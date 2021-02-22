@@ -1,0 +1,82 @@
+{
+  "name": "mitra-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Ananda Fitra @ ITC Finance",
+  "license": "MIT",
+  "nodemonConfig": {
+    "exec": "yarn dev",
+    "watch": [
+      "src/*"
+    ],
+    "ignore": [
+      "**/__tests__/**",
+      "*.test.js",
+      "*.spec.js",
+      "*.txt"
+    ]
+  },
+  "scripts": {
+    "build": "npm-run-all clean transpile",
+    "clean": "rimraf dist",
+    "dev": "NODE_ENV=development npm-run-all build serve",
+    "prod": "NODE_ENV=production npm-run-all build serve",
+    "serve": "node dist/server.js",
+    "seq-cli:init": "sequelize-cli init",
+    "model:generate": "sequelize-cli model:generate",
+    "db:migrate": "sequelize-cli db:migrate --migrations-path dist/database/migrations",
+    "db:migrate:undo": "sequelize-cli db:migrate:undo:all --migrations-path dist/database/migrations",
+    "seed:generate": "sequelize-cli seed:generate",
+    "seed:run": "sequelize-cli db:seed:all --seeders-path dist/database/seeders",
+    "seed:undo": "sequelize-cli db:seed:undo:all --seeders-path dist/database/seeders",
+    "migration:generate": "sequelize-cli migration:generate",
+    "start": "yarn prod",
+    "transpile": "babel src --out-dir dist --copy-files",
+    "watch:dev": "nodemon",
+    "migrate": "npm-run-all build db:migrate seed:run",
+    "migrate:undo": "npm-run-all seed:undo db:migrate:undo"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "babel-preset-airbnb": "^5.0.0",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.4",
+    "npm-run-all": "^4.1.5",
+    "sequelize-cli": "^6.2.0"
+  },
+  "dependencies": {
+    "airbnb-browser-shims": "^3.3.0",
+    "apollo-server": "^2.17.0",
+    "apollo-server-express": "^2.17.0",
+    "bcrypt": "^5.0.0",
+    "bull": "^3.18.0",
+    "cors": "^2.8.5",
+    "cron": "^1.8.2",
+    "dataloader": "^2.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "faker": "^5.1.0",
+    "firebase-admin": "^9.2.0",
+    "graphql": "^15.3.0",
+    "graphql-depth-limit": "^1.1.0",
+    "helmet": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.27.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nanoid": "^3.1.12",
+    "nodemailer": "^6.4.11",
+    "pg": "^8.3.3",
+    "pug": "^3.0.0",
+    "redis": "^3.0.2",
+    "sequelize": "^6.3.5",
+    "sharp": "^0.26.1",
+    "uuid": "^8.3.0"
+  }
+}

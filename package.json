@@ -1,8 +1,8 @@
 {
-  "name": "mitra-server",
+  "name": "nodejs-server-boilerplate",
   "version": "1.0.0",
   "main": "server.js",
-  "author": "Ananda Fitra @ ITC Finance",
+  "author": "Ananda Fitra",
   "license": "MIT",
   "nodemonConfig": {
     "exec": "yarn dev",
